@@ -1,0 +1,7 @@
+{
+  "/sww/tracking/page": "app/sww/tracking/page.js",
+  "/sww/invoices/page": "app/sww/invoices/page.js",
+  "/sww/company/page": "app/sww/company/page.js",
+  "/sww/dashboard/page": "app/sww/dashboard/page.js",
+  "/sww/stock/page": "app/sww/stock/page.js"
+}
