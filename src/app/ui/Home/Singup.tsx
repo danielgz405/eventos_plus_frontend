@@ -1,13 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import { GeneralInput } from '../Common/Inputs';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { FormEvent, useState } from 'react';
 import { AuthSchema } from 'api/auth/auth';
 import { Alert } from '../utils/toast';
-import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
-import { GeneralInput } from '../Common/Inputs';
 
 const images = [
   'https://firebasestorage.googleapis.com/v0/b/cyc-acabados-arquitectonicos.appspot.com/o/sww%2FHomeImages%2FDALL%C2%B7E%202023-11-10%2017.06.png?alt=media&token=5d1259cd-7091-4275-8f42-db51d674acc2',
@@ -22,12 +20,14 @@ type props = {
   auth: AuthSchema;
 };
 
-export default function LoginComponent({ auth }: props) {
+export default function SingupComponent({ auth }: props) {
   const router = useRouter();
 
   const [data, setData] = useState({
     email: '',
     password: '',
+    comfirmPassword: '',
+    name: '',
   });
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -67,53 +67,40 @@ export default function LoginComponent({ auth }: props) {
             {auth.user && <p className="text-sm text-primary text-center mt-3">{auth.user.email}</p>}
           </div>
           <div className="mt-10 w-[70vh]">
-            {auth.user ? (
-              <div className="space-y-5 px-10">
-                <div className="w-full flex justify-center items-center space-x-3">
-                  <button
-                    onClick={() => router.push('/sww/dashboard')}
-                    className="bg-primary px-28 py-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  >
-                    Entrar
-                  </button>
-                  <button
-                    onClick={() => auth.logout()}
-                    className="bg-darker p-3 text-base font-semibold text-primary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  >
-                    <ArrowLeftOnRectangleIcon className="h-6 w-6" />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <form className="space-y-5 px-10" onSubmit={(e) => submitHandler(e)}>
-                <GeneralInput onChange={(e) => setData({ ...data, email: e.target.value })} value={data.email} id="email" name="email" type="email" placeHolder="Email" autoComplete="email" required />
-                <GeneralInput
-                  onChange={(e) => setData({ ...data, password: e.target.value })}
-                  value={data.password}
-                  id="password"
-                  name="password"
-                  placeHolder="Contraseña"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                />
+            <form className="space-y-5 px-10" onSubmit={(e) => submitHandler(e)}>
+              <GeneralInput onChange={(e) => setData({ ...data, email: e.target.value })} value={data.email} id="email" name="email" type="email" placeHolder="Email" autoComplete="email" required />
+              <GeneralInput
+                onChange={(e) => setData({ ...data, password: e.target.value })}
+                value={data.password}
+                id="password"
+                name="password"
+                placeHolder="Contraseña"
+                type="password"
+                autoComplete="current-password"
+                required
+              />
+              <GeneralInput onChange={(e) => setData({ ...data, name: e.target.value })} value={data.name} id="name" name="name" type="text" placeHolder="Nombre" autoComplete="name" required />
+              <GeneralInput
+                onChange={(e) => setData({ ...data, comfirmPassword: e.target.value })}
+                value={data.comfirmPassword}
+                id="password_confirm"
+                name="password_confirm"
+                placeHolder="Comfirma tu Contraseña"
+                type="password"
+                autoComplete=""
+                required
+              />
 
-                <div className="w-full flex justify-center items-center flex-row">
-                  <Link
-                    href="/sinup"
-                    className="bg-primary px-16 py-3 mr-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  >
-                    Resgitrate
-                  </Link>
-                  <button
-                    type="submit"
-                    className="bg-primary px-16 py-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  >
-                    Iniciar sesion
-                  </button>
-                </div>
-              </form>
-            )}
+              <div className="w-full flex justify-center items-center">
+                <button
+                  type="submit"
+                  className="bg-primary px-16 py-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                  Registrar
+                </button>
+              </div>
+            </form>
+
             <div className="w-full h-44 mt-8 overflow-hidden rounded-3xl flex justify-center items-center">
               <div className="relative h-[600px] w-[105%]">
                 <Image layout="fill" src={images[Math.floor(Math.random() * images.length)]} alt="" />

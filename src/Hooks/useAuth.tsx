@@ -50,7 +50,7 @@ function useProvideAuth() {
           window.location.href = '/login';
         }
       }
-    } else if (window.location.pathname === '/' || window.location.pathname.includes('/new-features')) {
+    } else if (window.location.pathname === '/' || window.location.pathname.includes('/new-features') || window.location.pathname.includes('/singup')) {
       setUser(null);
     } else {
       if (window.location.pathname !== '/login') {

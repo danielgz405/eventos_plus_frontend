@@ -20,21 +20,18 @@ export default function Hero() {
           <div className="w-1/2">
             <div>
               <h1 className="text-4xl font-bold leading-normal text-white sm:text-6xl">
-                Stock <br /> Wise <br /> Works
+                Evento <br /> Plus <br />
               </h1>
               <p className="mt-10 text-lg leading-normal text-white">
-                Experimenta la comodidad de gestionar tu inventario y ventas con <strong>Stock Wise Works.</strong> Desde el seguimiento detallado de productos hasta la generación de cotizaciones y
-                recibos de venta, nuestra aplicación simplifica las operaciones comerciales para empresas de acabados arquitectónicos.
+                En Evento Plus, nos enorgullece ofrecerte una plataforma integral para la gestión de tus eventos, desde pequeñas reuniones hasta grandes conferencias. Con nuestra amplia gama de
+                herramientas y servicios, puedes planificar, organizar y ejecutar eventos de manera eficiente y exitosa.
               </p>
               <div className="mt-14  gap-x-6">
                 <Link
-                  href="/login"
+                  href="/singup"
                   className="bg-primary px-6 py-3 text-lg font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Iniciar sesion
-                </Link>
-                <Link href="/new-features" className="text-lg ml-10 font-semibold hover:text-primary leading-6 text-white">
-                  novedades <span aria-hidden="true">→</span>
+                  Registrate
                 </Link>
               </div>
             </div>

@@ -7,7 +7,7 @@ import { ProviderAuth } from 'Hooks/useAuth';
 import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
-  title: 'Stock Wise Works',
+  title: 'Evento PLus',
   description:
     'Experimenta la comodidad de gestionar tu inventario y ventas con Stock Wise Works. Desde el seguimiento detallado de productos hasta la generación de cotizaciones y recibos de venta, nuestra aplicación simplifica las operaciones comerciales para empresas de acabados arquitectónicos.',
   keywords: ['inventario', 'gestion de inventarios', 'facil y rapido'],

@@ -9,7 +9,7 @@ const createUser = async (user: UserSchemaDto) => {
       'Content-Type': 'application/json',
     },
   };
-  const response = await axios.post(endPoints.users.createUser, user, config);
+  const response = await axios.post(endPoints.auth.signup, user, config);
   return response.data;
 };
 

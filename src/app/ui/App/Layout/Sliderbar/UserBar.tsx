@@ -11,7 +11,7 @@ type props = {
 export default function UserBar({ auth }: props) {
   return (
     <div className="bg-secondary px-2 py-1 rounded-3xl flex flex-row items-center justify-between">
-      <Link href={'/sww/user'} className="text-lg px-5 font-semibold leading-6 text-tertiary hover:text-white">
+      <Link href={'/sww/user'} className="text-2xl px-5 font-semibold leading-6 text-tertiary hover:text-white">
         {auth.user?.name}
       </Link>
       <AnyDropdown Element={() => UserImage({ auth })}>
