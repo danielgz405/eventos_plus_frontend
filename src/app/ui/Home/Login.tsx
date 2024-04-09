@@ -36,7 +36,7 @@ export default function LoginComponent({ auth }: props) {
     auth
       .login(data.email, data.password)
       .then(() => {
-        router.push('sww/dashboard');
+        router.push('eventoplus/dashboard');
         Alert(`Bienvenido ${auth.user?.name}`, 'success');
       })
       .catch((res) => {
@@ -71,7 +71,7 @@ export default function LoginComponent({ auth }: props) {
               <div className="space-y-5 px-10">
                 <div className="w-full flex justify-center items-center space-x-3">
                   <button
-                    onClick={() => router.push('/sww/dashboard')}
+                    onClick={() => router.push('/eventoplus/dashboard')}
                     className="bg-primary px-28 py-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
                     Entrar
@@ -103,7 +103,7 @@ export default function LoginComponent({ auth }: props) {
                     href="/sinup"
                     className="bg-primary px-16 py-3 mr-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
-                    Resgitrate
+                    Resgistrate
                   </Link>
                   <button
                     type="submit"

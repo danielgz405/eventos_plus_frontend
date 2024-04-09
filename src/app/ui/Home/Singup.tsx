@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { AuthSchema } from 'api/auth/auth';
 import { Alert } from '../utils/toast';
+import { createUser } from 'api/users/users';
+import { UserSchema } from 'api/users/usersSchemas';
 
 const images = [
   'https://firebasestorage.googleapis.com/v0/b/cyc-acabados-arquitectonicos.appspot.com/o/sww%2FHomeImages%2FDALL%C2%B7E%202023-11-10%2017.06.png?alt=media&token=5d1259cd-7091-4275-8f42-db51d674acc2',
@@ -33,20 +35,35 @@ export default function SingupComponent({ auth }: props) {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    auth
-      .login(data.email, data.password)
-      .then(() => {
-        router.push('sww/dashboard');
-        Alert(`Bienvenido ${auth.user?.name}`, 'success');
+    if (data.password === data.comfirmPassword) {
+      createUser({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        image: '',
+        image_ref: '',
       })
-      .catch((res) => {
-        console.log(res);
-        if (res.response.data.message === 'Invalid credentials') {
-          Alert('Correo o contraseña incorrectos', 'warning');
-        } else {
-          Alert('Error en el servidor. Contacte con su administrador para más información.', 'error');
-        }
-      });
+        .then((res: UserSchema) => {
+          auth
+            .login(res.email, data.password)
+            .then(() => {
+              router.push('eventoplus/dashboard');
+              Alert(`Bienvenido ${auth.user?.name}`, 'success');
+            })
+            .catch((res) => {
+              if (res.response.data.message === 'Invalid credentials') {
+                Alert('Correo o contraseña incorrectos', 'warning');
+              } else {
+                Alert('Error en el servidor. Contacte con su administrador para más información.', 'error');
+              }
+            });
+        })
+        .catch(() => {
+          Alert('Error al crear usuario', 'error');
+        });
+    } else {
+      Alert('Las contarseñas no coinciden', 'warning');
+    }
   };
   return (
     <>
@@ -68,6 +85,7 @@ export default function SingupComponent({ auth }: props) {
           </div>
           <div className="mt-10 w-[70vh]">
             <form className="space-y-5 px-10" onSubmit={(e) => submitHandler(e)}>
+              <GeneralInput onChange={(e) => setData({ ...data, name: e.target.value })} value={data.name} id="name" name="name" type="text" placeHolder="Nombre" autoComplete="name" required />
               <GeneralInput onChange={(e) => setData({ ...data, email: e.target.value })} value={data.email} id="email" name="email" type="email" placeHolder="Email" autoComplete="email" required />
               <GeneralInput
                 onChange={(e) => setData({ ...data, password: e.target.value })}
@@ -79,7 +97,6 @@ export default function SingupComponent({ auth }: props) {
                 autoComplete="current-password"
                 required
               />
-              <GeneralInput onChange={(e) => setData({ ...data, name: e.target.value })} value={data.name} id="name" name="name" type="text" placeHolder="Nombre" autoComplete="name" required />
               <GeneralInput
                 onChange={(e) => setData({ ...data, comfirmPassword: e.target.value })}
                 value={data.comfirmPassword}
