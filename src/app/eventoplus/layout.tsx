@@ -10,8 +10,8 @@ type props = {
 
 export default function RootLayout({ children }: props) {
   const [search, setSearch] = useState({
-    startDate: 'String',
-    endDate: ' string',
+    startDate: 'string',
+    endDate: 'string',
   });
   const [isClick, setIsClick] = useState(false);
   const [filter, setFilter] = useState<Filter>({

@@ -8,6 +8,7 @@ export const endPoints = {
   users: {
     getUsers: `${API}/users/list`,
     profile: `${API}/profile`,
+    createUser: `${API}/create`,
     updateUser: (id: string) => `${API}/users/update/${id}`,
     deleteUser: (id: string) => `${API}/users/delete/${id}`,
   },
