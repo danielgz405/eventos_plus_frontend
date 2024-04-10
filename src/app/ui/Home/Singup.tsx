@@ -45,13 +45,13 @@ export default function SingupComponent({ auth }: props) {
       })
         .then((res: UserSchema) => {
           auth
-            .login(res.email, data.password)
+            .login(res?.email, data?.password)
             .then(() => {
               router.push('eventoplus/dashboard');
               Alert(`Bienvenido ${auth.user?.name}`, 'success');
             })
             .catch((res) => {
-              if (res.response.data.message === 'Invalid credentials') {
+              if (res.response?.data?.message === 'Invalid credentials') {
                 Alert('Correo o contraseña incorrectos', 'warning');
               } else {
                 Alert('Error en el servidor. Contacte con su administrador para más información.', 'error');

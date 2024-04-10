@@ -1,16 +1,16 @@
 'use client';
 
 import { useContext } from 'react';
-import { PageContext } from 'app/ui/App/Layout/SliderbarComponent';
-import DashboardComponet from 'app/ui/App/dashboard/DashboardComponent';
+import { PageContext, Search } from 'app/ui/App/Layout/SliderbarComponent';
+import DashboardComponet from 'app/ui/App/Dashboard/DashboardComponent';
 
 export default function PageDashBoard() {
-  const search: any = useContext(PageContext);
-  console.log(search);
+  const search: Search = useContext(PageContext);
+  console.log(search.auth);
 
   return (
-    <div className="h-full w-full overflow-hidden overflow-y-auto">
-      <DashboardComponet />
+    <div className="p-4">
+      <DashboardComponet auth={search.auth} />
     </div>
   );
 }

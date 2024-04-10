@@ -41,7 +41,7 @@ export default function LoginComponent({ auth }: props) {
       })
       .catch((res) => {
         console.log(res);
-        if (res.response.data.message === 'Invalid credentials') {
+        if (res.response?.data?.message === 'Invalid credentials') {
           Alert('Correo o contraseña incorrectos', 'warning');
         } else {
           Alert('Error en el servidor. Contacte con su administrador para más información.', 'error');
@@ -100,7 +100,7 @@ export default function LoginComponent({ auth }: props) {
 
                 <div className="w-full flex justify-center items-center flex-row">
                   <Link
-                    href="/sinup"
+                    href="/singup"
                     className="bg-primary px-16 py-3 mr-3 text-base font-semibold text-tertiary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
                     Resgistrate

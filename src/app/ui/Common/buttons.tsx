@@ -52,3 +52,20 @@ export function ButtonGreen({ className, onClick, disabled, type, children }: Bu
     </button>
   );
 }
+
+export function ButtonDarker({ className, onClick, disabled, type, children }: ButtonOrangeprops) {
+  return (
+    <button
+      onClick={(e) => onClick && onClick(e)}
+      type={type}
+      disabled={disabled}
+      className={clsx(
+        className,
+        disabled && '!bg-darker/80 cursor-not-allowed',
+        'bg-darker px-10 py-2 h-fit w-fit text-base font-semibold text-secondary shadow-sm rounded-full hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+      )}
+    >
+      {children}
+    </button>
+  );
+}

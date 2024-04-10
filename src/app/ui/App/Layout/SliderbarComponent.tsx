@@ -25,6 +25,7 @@ export interface Search {
     }>
   >;
   isClick: boolean;
+  auth: AuthSchema;
 }
 export const PageContext = createContext({} as Search);
 
@@ -52,17 +53,17 @@ export default function SliderbarComponent({ auth, search, filter, isClick, chil
   const pathname = usePathname();
 
   return (
-    <PageContext.Provider value={{ search, setSearch, isClick, filter } as Search}>
+    <PageContext.Provider value={{ search, setSearch, isClick, filter, auth } as Search}>
       <div className="h-screen overflow-hidden flex flex-col">
-        <div className="w-screen overflow-y-auto">
+        <div className="w-screen">
           <div className="px-5 pt-5 space-x-5 grid grid-cols-4">
             <Navigation />
             {routesNeededSearch.includes(pathname) && <SearchBar search={search} filter={filter} isClick={isClick} setFilter={setFilter} setIsClick={setIsClick} setSearch={setSearch} />}
             <UserBar auth={auth} />
           </div>
         </div>
-        <div className="flex-1 w-screen p-5">
-          <div className="container-transparent overflow-hidden h-full">{children}</div>
+        <div className="w-screen p-5 overflow-y-auto">
+          <div className="container-transparent overflow-hidden overflow-y-auto h-full">{children}</div>
         </div>
       </div>
     </PageContext.Provider>
