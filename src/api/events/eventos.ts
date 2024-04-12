@@ -57,4 +57,15 @@ const updateEvent = async (id: string, data: EventUpdatedSchemaDto) => {
   return response.data;
 };
 
-export { listEvent, listEventAll, createEvent, deleteEvent, updateEvent };
+const listEventsByName = async (limit: string, page: string, name: string) => {
+  const config = {
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'application/json',
+    },
+  };
+  const response = await axios.get(endPoints.events.listEventsByName(limit, page, name), config);
+  return response.data;
+};
+
+export { listEvent, listEventAll, createEvent, deleteEvent, updateEvent, listEventsByName };

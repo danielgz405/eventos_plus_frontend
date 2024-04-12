@@ -14,4 +14,10 @@ module.exports = {
   globals: {
     JSX: true,
   },
+  "prettier/prettier": [
+    "error",
+    {
+      "endOfLine": "auto"
+    }
+  ]
 };

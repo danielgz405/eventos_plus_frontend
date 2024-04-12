@@ -28,4 +28,8 @@ export const endPoints = {
     getPlaceById: (id: string) => `${API}/place/one/${id}`,
     listAll: `${API}/place/list`,
   },
+  reserve: {
+    insertReserve: `${API}/reserve`,
+    listReserveUserId: (userId: string) => `${API}/reserve/list/${userId}`
+  }
 };

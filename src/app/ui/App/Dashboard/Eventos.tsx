@@ -4,10 +4,12 @@ import { Modal } from 'app/ui/Common/Modals';
 import { ButtonDarker } from 'app/ui/Common/buttons';
 import { ReactNode, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
+import ListEvent from './ListEvent';
+import { AuthSchema } from 'api/auth/auth';
 
 const Marker = ({ children }: { children: ReactNode; lat: number; lng: number }) => children;
 
-export default function Eventos() {
+export default function Eventos({auth}:{auth:AuthSchema}) {
   const [open, setOpen] = useState(false);
   const defaultProps = {
     center: {
@@ -26,7 +28,7 @@ export default function Eventos() {
             setOpen(!open);
           }}
         >
-          Crear Evento
+          Buscar Evento
         </ButtonDarker>
       </div>
       <div className="w-full h-[70vh] px-4 pb-4">
@@ -41,8 +43,8 @@ export default function Eventos() {
           </GoogleMapReact>
         </div>
       </div>
-      <Modal open={open} setOpen={setOpen} size="max-w-lg" title="Creacion del Evento" description="Se va a crear el evento que necesite">
-        <div></div>
+      <Modal open={open} setOpen={setOpen} size="max-w-lg" title="Busqueda de evento" description="Se puede buscar el evento creado por el usuario">
+        <ListEvent auth={auth}/>
       </Modal>
     </div>
   );

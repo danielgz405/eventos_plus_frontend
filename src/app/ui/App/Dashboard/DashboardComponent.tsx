@@ -14,7 +14,7 @@ export default function DashboardComponet({ auth }: props) {
     <div className="space-y-4 overflow-y-auto">
       <EventosActivos auth={auth} />
       {auth?.user?.is_creator && <EventosCreatedByUser />}
-      <Eventos />
+      <Eventos auth={auth} />
     </div>
   );
 }
